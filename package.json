@@ -1,0 +1,25 @@
+{
+  "name": "spdx-tools-js",
+  "version": "1.0.0",
+  "description": "Javascript equivalent of spdx-tools.",
+  "main": "public/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node public/index.js",
+    "build": "babel src -d public"
+  },
+  "keywords": [
+    "spdx",
+    "js",
+    "tools"
+  ],
+  "author": "Ndip Tanyi",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "lex": "^1.7.9",
+    "lexr": "^1.0.4",
+    "moment": "^2.24.0"
+  }
+}

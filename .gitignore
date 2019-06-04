@@ -1,0 +1,5 @@
+# Public folder: where transpiled files are stored
+public/
+
+# node_modules folder
+node_modules/
