@@ -2,25 +2,52 @@ import moment from 'moment';
 const lexr = require('lexr');
 const Lexer = require("lex");
 
-
 export const datetime_iso_format = (dateTime) => {
   // Return an ISO-8601 representation of a datetime object.
-  return moment(dateTime).format();
+  return moment(dateTime).toISOString()
 }
 
-export const no_assert = () => {
+export class NoAssert {
   // Represent SPDX NOASSERTION value.
-  return "NOASSERTION";
+  to_value() {
+    return 'NOASSERTION';
+  }
+
+  toString() {
+    return this.to_value();
+  }
 }
 
-export const unknown = () => {
+export class UnKnown {
   // Represent SPDX UNKNOWN value.
-  return "UNKNOWN";
+  to_value() {
+    return 'NOASSERTION';
+  }
+
+  toString() {
+    return this.to_value();
+  }
 }
 
-export const spdx_none = () => {
+export class SPDXNone {
   // Represent SPDX None value.
-  return "NONE";
+  to_value() {
+    return 'NONE';
+  }
+
+  toString() {
+    return this.to_value();
+  }
+}
+
+export const max = (item1, item2) => {
+  if(item2 > item1) {
+    return item2;
+  }
+  if(item2 < item1) {
+    return item1;
+  }
+  return null;
 }
 
 // TOKENIZER

@@ -20,6 +20,7 @@
     "babel-preset-env": "^1.7.0",
     "lex": "^1.7.9",
     "lexr": "^1.0.4",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "object-hash": "^1.3.1"
   }
 }
