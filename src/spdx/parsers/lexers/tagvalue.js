@@ -82,7 +82,9 @@ export default class Lexer {
                     'DOC_URI', 'EXT_DOC_REF_CHKSUM'].concat(Object.values(reserved))
 
     t_text(t) {
-
+      // let lexer = moo.compile({
+      //
+      // })
     }
 
     t_text_end(t) {
