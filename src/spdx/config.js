@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import Version from './version';
 
 const fs = require('fs');
@@ -24,7 +26,7 @@ load_license_list = (file_name) => {
   */
 
   licenses_map = {}
-  var lics = fs.readFileSync(file_name, 'utf8');
+  let lics = fs.readFileSync(file_name, 'utf8');
   console.log(lics);
   licenses = json.parse(lics)
   console.log(licenses);

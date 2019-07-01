@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 export const VERSION_REGEX = /(\d+)\.(\d+)/gm;
 
 export default class Algorithm {

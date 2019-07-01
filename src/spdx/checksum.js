@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 export default class Algorithm {
   // Generic checksum algorithm.
   constructor(identifier, value) {

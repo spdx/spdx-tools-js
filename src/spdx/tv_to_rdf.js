@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import StandardLogger from './parsers/loggers';
 import Parser from './parsers/tagvaluebuilder';
 import Builder from './parsers/loggers';

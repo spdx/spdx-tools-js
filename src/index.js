@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import {tokens, gen_tokenizer} from './spdx/utils';
 import Algorithm from './spdx/checksum';
 

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import {LICENSE_MAP} from './config';
 import NoAssert from './utils';
 import SPDXNone from './utils';

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import {LICENSE_LIST_VERSION} from './config';
 import {datetime_iso_format} from './utils';
 

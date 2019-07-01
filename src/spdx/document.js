@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import {LICENSE_MAP} from './config';
 import CreationInfo from './creationInfo';
 

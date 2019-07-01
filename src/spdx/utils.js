@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import moment from 'moment';
 const lexr = require('lexr');
 const Lexer = require("lex");

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import moment from 'moment';
 import {datetime_iso_format} from '../utils/general';
 
