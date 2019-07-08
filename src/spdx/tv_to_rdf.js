@@ -11,5 +11,4 @@ export const tv_to_rdf = (infile_name, outfile_name) => {
   Convert a SPDX file from tag/value format to RDF format.
     Return True on sucess, False otherwise.
   */
-  return;
 }
