@@ -46,6 +46,10 @@ load_license_list = (file_name) => {
   }
 }
 
+// get_licenses = () => {
+//
+// }
+
 const _base_dir = __dirname
 const _licenses = path.join(_base_dir, 'licenses.json')
 const _exceptions = path.join(_base_dir, 'exceptions.json')

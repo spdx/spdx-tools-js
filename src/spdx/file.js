@@ -14,6 +14,10 @@ export class SpdxFileType {
     const BINARY = 2;
     const ARCHIVE = 3;
     const OTHER = 4;
+    this.SOURCE = SOURCE;
+    this.BINARY = BINARY;
+    this.ARCHIVE = ARCHIVE;
+    this.OTHER = OTHER;
   }
 }
 

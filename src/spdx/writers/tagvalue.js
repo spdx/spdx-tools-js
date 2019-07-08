@@ -1,10 +1,13 @@
-import SpdxFile, SpdxFileType from '../file';
-import LicenseConjunction, LicenseDisjunction from '../document';
+import SpdxFileType from '../file';
+import SpdxFile from '../file';
+import LicenseDisjunction from '../document';
+import LicenseConjunction from '../document';
+
+
 const fs = require('fs');
 
 export class InvalidDocumentError {
   // Raised when attempting to write an invalid document.
-  return;
 }
 
 export const write_seperators = (out) => {
@@ -89,11 +92,12 @@ export const write_annotation = (annotation, out) => {
 }
 
 export const write_file_type = (ftype, out) => {
+  const spdx_file_type = SpdxFileType();
   const VALUES = {
-        SpdxFileType.SOURCE: 'SOURCE',
-        SpdxFileType.OTHER: 'OTHER',
-        SpdxFileType.BINARY: 'BINARY',
-        SpdxFileType.ARCHIVE: 'ARCHIVE'
+        [spdx_file_type.SOURCE]: 'SOURCE',
+        [spdx_file_type.OTHER]: 'OTHER',
+        [spdx_file_type.BINARY]: 'BINARY',
+        [spdx_file_type.ARCHIVE]: 'ARCHIVE'
     }
   write_value('FileType', VALUES[ftype], out)
 }
@@ -266,7 +270,7 @@ export const write_document = (document, out, validate) => {
     Optionally `validate` the document before writing and raise
     InvalidDocumentError if document.validate returns False.
   */
-    const messages = []
+    let messages = [];
     messages = document.validate(messages)
     // if(validate and messages) raise InvalidDocumentError(messages)
 

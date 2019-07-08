@@ -2,12 +2,12 @@
 
 
 export class BuilderException {
-  return;
 }
 
 export class CardinalityError extends BuilderException {
 
   constructor(msg) {
+    super();
     this.msg = msg;
   }
 
@@ -16,6 +16,7 @@ export class CardinalityError extends BuilderException {
 export class SPDXValueError extends BuilderException {
 
   constructor(msg) {
+    super();
     this.msg = msg;
   }
 
@@ -24,6 +25,7 @@ export class SPDXValueError extends BuilderException {
 export class OrderError extends BuilderException {
 
   constructor(msg) {
+    super();
     this.msg = msg;
   }
 
