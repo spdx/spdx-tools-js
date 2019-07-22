@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 
+const moo = require('moo');
 
 
 export default class Lexer {
@@ -86,69 +87,122 @@ export default class Lexer {
   }
 
     t_text(t) {
-      // let lexer = moo.compile({
-      //
-      // })
+      let lexer = moo.compile({
+        openTag: ['<text>'],
+        closeTag: ['</text>'],
+        string:  /"(?:\\["\\]|[^\n"\\])*"/,
+      })
+      lexer.reset(t)
     }
 
     t_text_end(t) {
-
+      let lexer = moo.compile({
+        string:  /'<\/text>\s*'/,
+      })
+      lexer.reset(t)
     }
 
     t_text_any(t) {
-
+      let lexer = moo.compile({
+        string:  /"(?:\\["\\]|[^\n"\\])*"/,
+      })
+      lexer.reset(t)
     }
 
     t_text_error(t) {
-
+      console.log('Lexer error in text state')
     }
 
     t_CHKSUM(t) {
-
+      let lexer = moo.compile({
+        string:  /':\s*SHA1:\s*[a-f0-9]{40,40}'/,
+      })
+      lexer.reset(t)
     }
 
     t_DOC_REF_ID(t) {
-
+      let lexer = moo.compile({
+        string:  /':\s*DocumentRef-([A-Za-z0-9\+\.\-]+)'/,
+      })
+      lexer.reset(t)
     }
 
     t_DOC_URI(t) {
-
+      let lexer = moo.compile({
+        string:  /'\s*((ht|f)tps?:\/\/\S*)'/,
+      })
+      lexer.reset(t)
     }
 
     t_EXT_DOC_REF_CHKSUM(t) {
-
+      let lexer = moo.compile({
+        string:  /'\s*SHA1:\s*[a-f0-9]{40,40}'/,
+      })
+      lexer.reset(t)
     }
 
     t_TOOL_VALUE(t) {
-
+      let lexer = moo.compile({
+        string:  /':\s*Tool:.+'/,
+      })
+      lexer.reset(t)
     }
 
     t_ORG_VALUE(t) {
+      let lexer = moo.compile({
+        string:  /':\s*Organization:.+'/,
+      })
+      lexer.reset(t)
+    }
 
+    t_PERSON_VALUE(t) {
+      let lexer = moo.compile({
+        string:  /':\s*Person:.+'/,
+      })
+      lexer.reset(t)
     }
 
     t_DATE(t) {
-
+      let lexer = moo.compile({
+        string:  /':\s*\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ'/,
+      })
+      lexer.reset(t)
     }
 
     t_KEYWORD_AS_TAG(t) {
-
+      let lexer = moo.compile({
+        string:  /'[a-zA-Z]+'/,
+      })
+      lexer.reset(t)
     }
 
     t_LINE_OR_KEYWORD_VALUE(t) {
-
+      let lexer = moo.compile({
+        string:  /':.+'/,
+      })
+      lexer.reset(t)
     }
 
     t_comment(t) {
-
+      let lexer = moo.compile({
+        string:  /'\#.*'/,
+      })
+      lexer.reset(t)
     }
 
     t_newline(t) {
-
+      let lexer = moo.compile({
+        string:  /'\n+'/,
+      })
+      lexer.reset(t)
     }
 
     t_whitespace(t) {
-
+      let lexer = moo.compile({
+        string:  /'\s+'/,
+        lexError: moo.error,
+      })
+      lexer.reset(t)
     }
 
     build(t) {
