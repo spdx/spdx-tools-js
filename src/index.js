@@ -30,6 +30,10 @@ const printMsg = () => {
   console.log(lexer.next())
   console.log(lexer.next())
   console.log(lexer.next())
+  process.argv.forEach(function (val, index, array) {
+  console.log(index + ': ' + val);
+});
+console.log(process.argv.length)
 }
 
 exports.printMsg = printMsg();
