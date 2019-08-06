@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: MIT
 
 
-export class BuilderException {
+export class BuilderException extends Error {
+  // Builder exception base class.
+  constructor(...args) {
+      super(...args)
+      Error.captureStackTrace(this, GoodError)
+  }
 }
 
 export class CardinalityError extends BuilderException {

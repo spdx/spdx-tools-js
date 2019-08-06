@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 import SpdxFileType from '../file';
 import SpdxFile from '../file';
 import LicenseDisjunction from '../document';
