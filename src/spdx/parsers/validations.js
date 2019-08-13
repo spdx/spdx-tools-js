@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-import Creator from '../creationInfo';
-import Person from '../creationInfo';
-import Organization from '../creationInfo';
+import Creator from '../creationinfo';
+import Person from '../creationinfo';
+import Organization from '../creationinfo';
 import Document from '../document';
 import License from '../document';
 import SPDXNone from '../utils';

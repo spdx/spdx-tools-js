@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import {LICENSE_MAP} from './config';
-import CreationInfo from './creationInfo';
+import CreationInfo from './creationinfo';
 
 const hash = require('object-hash');
 
@@ -73,7 +73,11 @@ export const _add_parens = (required, text) => {
   return text;
 }
 
-export class License {
+const isArray = (myArray) => {
+  return myArray.constructor.toString().indexOf("Array") > -1;
+}
+
+export default class License {
   constructor(full_name, identifier) {
     this._full_name = full_name;
     this._identifier = identifier;
@@ -85,7 +89,10 @@ export class License {
         the full_name is retrieved from it. Otherwise
         the full_name is the same as the identifier.
     */
-    if(Object.keys(LICENSE_MAP).includes(identifier)) {
+    const license_map_keys = Object.keys(LICENSE_MAP);
+    console.log(license_map_keys.length)
+    console.log(isArray(license_map_keys))
+    if(license_map_keys.includes(identifier)) {
       return cls(LICENSE_MAP[identifier], identifier);
     } else {
       return cls(identifier, identifier);

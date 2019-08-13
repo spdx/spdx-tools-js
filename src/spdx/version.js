@@ -2,7 +2,7 @@
 
 export const VERSION_REGEX = /(\d+)\.(\d+)/gm;
 
-export default class Algorithm {
+export default class Version {
   /*
   Version number composed of major and minor.
     Fields:
@@ -10,6 +10,7 @@ export default class Algorithm {
     - minor: Minor number, int.
   */
   constructor(major, minor) {
+    console.log("in constructor")
     this.major = major;
     this.minor = minor;
   }

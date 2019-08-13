@@ -19,7 +19,7 @@ import Package from '../package';
 import SpdxFileType from '../file';
 
 
-import Organization from '../creationInfo';
+import Organization from '../creationinfo';
 import Document from '../document';
 import License from '../document';
 import SPDXNone from '../utils';
