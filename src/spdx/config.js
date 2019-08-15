@@ -5,18 +5,6 @@ import Version from './version';
 const fs = require('fs');
 const path = require('path');
 
-export default class Algorithm {
-  // Generic checksum algorithm.
-  constructor(identifier, value) {
-    this.identifier = identifier;
-    this.value = value;
-  }
-
-  to_tv() {
-    return `${this.identifier}: ${this.value}`;
-  }
-}
-
 
 const load_license_list = (file_name) => {
   /*

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 import {LICENSE_MAP} from './config';
-import CreationInfo from './creationinfo';
+let creationinfojs = require('./creationinfo');
 
 const hash = require('object-hash');
 
@@ -77,7 +77,7 @@ const isArray = (myArray) => {
   return myArray.constructor.toString().indexOf("Array") > -1;
 }
 
-export default class License {
+export class License {
   constructor(full_name, identifier) {
     this._full_name = full_name;
     this._identifier = identifier;
@@ -257,7 +257,7 @@ export class Document {
     this.ext_document_references = [];
     this.comment = comment;
     this.namespace = namespace;
-    this.creation_info = new CreationInfo();
+    this.creation_info = new creationinfojs.CreationInfo();
     this.package_ = package_;
     this.extracted_licenses = [];
     this.reviews = [];
@@ -405,4 +405,13 @@ export class Document {
     }
     return messages;
   }
+}
+
+module.exports = {
+  ExternalDocumentRef : ExternalDocumentRef,
+  License : License,
+  LicenseConjunction : LicenseConjunction,
+  LicenseDisjunction : LicenseDisjunction,
+  ExtractedLicense : ExtractedLicense,
+  Document : Document
 }

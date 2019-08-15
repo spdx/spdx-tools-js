@@ -2,6 +2,7 @@
 
 import {LICENSE_LIST_VERSION} from './config';
 import {datetime_iso_format} from './utils';
+import moment from 'moment';
 
 export class Creator {
   /*
@@ -168,4 +169,12 @@ export class CreationInfo extends Creator {
     return messages;
   }
 
+}
+
+module.exports = {
+  Creator : Creator,
+  Organization : Organization,
+  Person : Person,
+  Tool : Tool,
+  CreationInfo : CreationInfo,
 }

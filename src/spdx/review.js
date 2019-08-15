@@ -9,7 +9,7 @@ import Creator from './creationinfo';
 
 const hash = require('object-hash');
 
-export class Review {
+export default class Review {
   /*
   Document review information.
     Fields:

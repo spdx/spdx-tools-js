@@ -184,3 +184,7 @@ export class Package {
     // TODO: Complete this
   }
 }
+
+module.exports = {
+  Package : Package,
+}

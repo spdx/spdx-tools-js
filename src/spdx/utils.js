@@ -200,3 +200,10 @@ export const license_parser_2 = (token_list) => {
 }
 
 // export { tokenizer };
+
+
+module.exports = {
+  NoAssert : NoAssert,
+  UnKnown : UnKnown,
+  SPDXNone : SPDXNone,
+}

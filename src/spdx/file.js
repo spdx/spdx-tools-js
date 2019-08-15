@@ -190,3 +190,8 @@ export class SpdxFile {
     return false;
   }
 }
+
+module.exports = {
+  SpdxFileType : SpdxFileType,
+  SpdxFile : SpdxFile,
+}
