@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
 
 import {LICENSE_MAP} from './config';
-import NoAssert from './utils';
-import SPDXNone from './utils';
+const utilsjs = require('./utils');
+const documentjs = require('./document');
 import {max} from './utils';
-import License from './document';
 
 const hash = require('object-hash');
 
@@ -32,12 +31,12 @@ export class SpdxFile {
     - type: one of FileType.SOURCE, FileType.BINARY, FileType.ARCHIVE
       and FileType.OTHER, optional zero or one.
     - chk_sum: SHA1, Mandatory one.
-    - conc_lics: Mandatory one. document.License or utils.NoAssert or utils.SPDXNone.
+    - conc_lics: Mandatory one. document.License or utils.new utilsjs.NoAssert or utils.new utilsjs.SPDXNone.
     - licenses_in_file: list of licenses found in file, mandatory one or more.
-      document.License or utils.SPDXNone or utils.NoAssert.
-    - document.license or utils.NoAssert or utils.SPDXNone.
+      document.License or utils.new utilsjs.SPDXNone or utils.new utilsjs.NoAssert.
+    - document.license or utils.new utilsjs.NoAssert or utils.new utilsjs.SPDXNone.
     - license_comment: Optional.
-    - copyright: Copyright text, Mandatory one. utils.NoAssert or utils.SPDXNone or str.
+    - copyright: Copyright text, Mandatory one. utils.new utilsjs.NoAssert or utils.new utilsjs.SPDXNone or str.
     - notice: optional One, str.
     - contributors: List of strings.
     - dependencies: list of file locations.
@@ -49,14 +48,14 @@ export class SpdxFile {
   constructor(name, spdx_id, chk_sum) {
     this.name = name;
     this.spdx_id = spdx_id;
-    this.comment = None;
-    this.type = None;
+    this.comment = null;
+    this.type = null;
     this.chk_sum = chk_sum;
-    this.conc_lics = None;
+    this.conc_lics = null;
     this.licenses_in_file = [];
-    this.license_comment = None;
-    this.copyright = None;
-    this.notice = None;
+    this.license_comment = null;
+    this.copyright = null;
+    this.notice = null;
     this.contributors = [];
     this.dependencies = [];
     this.artifact_of_project_name = [];
@@ -121,9 +120,9 @@ export class SpdxFile {
 
 
   validate_copyright(messages) {
-    if(!(this.copyright instanceof String || this.copyright instanceof NoAssert || this.copyright instanceof SPDXNone)) {
+    if(!(this.copyright instanceof String || this.copyright instanceof new utilsjs.NoAssert || this.copyright instanceof new utilsjs.SPDXNone)) {
       messages = `${messages} [
-          'File copyright must be str or unicode or utils.NoAssert or utils.SPDXNone'
+          'File copyright must be str or unicode or utils.new utilsjs.NoAssert or utils.new utilsjs.SPDXNone'
       ]`;
     }
     return messages;
@@ -152,8 +151,8 @@ export class SpdxFile {
 
   validate_concluded_license(messages) {
     // FIXME: use isinstance instead??
-    if(!(this.conc_lics instanceof License || this.conc_lics instanceof NoAssert || this.conc_lics instanceof SPDXNone)) {
-        messages = `${messages} + ['File concluded license must be one of document.License, utils.NoAssert or utils.SPDXNone']`;
+    if(!(this.conc_lics instanceof documentjs.License || this.conc_lics instanceof new utilsjs.NoAssert || this.conc_lics instanceof new utilsjs.SPDXNone)) {
+        messages = `${messages} + ['File concluded license must be one of document.License, utils.new utilsjs.NoAssert or utils.new utilsjs.SPDXNone']`;
       }
     return messages;
   }

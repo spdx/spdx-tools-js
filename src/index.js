@@ -3,6 +3,7 @@
 const documentjs = require('./spdx/document');
 const creationinfojs = require('./spdx/creationinfo');
 const packagejs = require('./spdx/package');
+const filejs = require('./spdx/file');
 const utilsjs = require('./spdx/utils');
 const path = require('path');
 import {tokens, gen_tokenizer} from './spdx/utils';
@@ -60,10 +61,23 @@ const tool_version = "1.0"
 const tool = new creationinfojs.Tool(tool_name + ' ' + tool_version);
 doc.creation_info.add_creator(tool)
 doc.creation_info.set_created_now()
+doc.add_extr_lic("spdx license")
 console.log(doc)
 const input_path = "/sdf/sdf/asdad/sdfsdf"
 const package_ = doc.package = new packagejs.Package(
       path.basename(input_path), new utilsjs.NoAssert()
   )
 package_.cr_text = "Copyright"
+package_.add_lics_from_file("spdx license")
 console.log(package_)
+
+// simulate the creation of just one file
+const file_name = "File name"
+const file_entry = new filejs.SpdxFile(
+        file_name,
+        new Algorithm('SHA1', '')
+    )
+file_entry.add_lics("spdx license")
+file_entry.add_lics(new utilsjs.NoAssert())
+file_entry.conc_lics = new utilsjs.NoAssert()
+console.log(file_entry)

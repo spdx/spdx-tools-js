@@ -58,6 +58,7 @@ export class Package {
     this.description = null;
     this.files = [];
     this.verif_exc_files = [];
+    this.license_from_files = [];
   }
 
   add_file(fil) {
