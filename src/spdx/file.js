@@ -50,7 +50,7 @@ export class SpdxFile {
     this.spdx_id = spdx_id;
     this.comment = null;
     this.type = null;
-    this.chk_sum = chk_sum;
+    this.chk_sum = chk_sum || null;
     this.conc_lics = null;
     this.licenses_in_file = [];
     this.license_comment = null;

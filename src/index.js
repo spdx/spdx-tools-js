@@ -8,6 +8,7 @@ const utilsjs = require('./spdx/utils');
 const path = require('path');
 import {tokens, gen_tokenizer} from './spdx/utils';
 import Algorithm from './spdx/checksum';
+import {write_document} from './spdx/writers/tagvalue';
 // import Document  from './spdx/document';
 // import License from './spdx/document';
 import Version from './spdx/version';
@@ -63,7 +64,7 @@ doc.creation_info.add_creator(tool)
 doc.creation_info.set_created_now()
 doc.add_extr_lic("spdx license")
 console.log(doc)
-const input_path = "/sdf/sdf/asdad/sdfsdf"
+const input_path = "~/Desktop/pn/spdx-tools-js"
 const package_ = doc.package = new packagejs.Package(
       path.basename(input_path), new utilsjs.NoAssert()
   )
@@ -75,9 +76,20 @@ console.log(package_)
 const file_name = "File name"
 const file_entry = new filejs.SpdxFile(
         file_name,
+        "",
         new Algorithm('SHA1', '')
     )
 file_entry.add_lics("spdx license")
 file_entry.add_lics(new utilsjs.NoAssert())
 file_entry.conc_lics = new utilsjs.NoAssert()
+file_entry.copyright = new utilsjs.NoAssert()
+package_.add_file(file_entry)
+package_.verif_code = doc.package.calc_verif_code()
+package_.license_declared = new utilsjs.NoAssert()
+package_.conc_lics = new utilsjs.NoAssert()
+console.log(package_.files.length)
 console.log(file_entry)
+if(package_.files) {
+  const spdx_output = "doc.spdx"
+  write_document(doc, spdx_output, false)
+}

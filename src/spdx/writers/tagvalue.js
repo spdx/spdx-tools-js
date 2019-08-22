@@ -1,20 +1,16 @@
 // SPDX-License-Identifier: MIT
 
-import SpdxFileType from '../file';
-import SpdxFile from '../file';
-import LicenseDisjunction from '../document';
-import LicenseConjunction from '../document';
-
-
+const documentjs = require('../document');
+const filejs = require('../file');
 const fs = require('fs');
 
 export class InvalidDocumentError {
   // Raised when attempting to write an invalid document.
 }
 
-export const write_seperators = (out) => {
+export const write_separators = (out) => {
   const seperator = '\n\n';
-  fs.writeFile(out, seperator, (err) => {
+  fs.appendFile(out, seperator, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written seperator");
   });
@@ -30,7 +26,7 @@ export const format_verif_code = (package_) => {
 
 export const write_value = (tag, value, out) => {
   const data = `${tag}: ${value} \n`;
-  fs.writeFile(out, data, (err) => {
+  fs.appendFile(out, data, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written value");
   });
@@ -38,7 +34,7 @@ export const write_value = (tag, value, out) => {
 
 export const write_text_value = (tag, value, out) => {
   const data = `${tag}: <text>${value}</text> \n`;
-  fs.writeFile(out, data, (err) => {
+  fs.appendFile(out, data, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written text value");
   });
@@ -47,7 +43,7 @@ export const write_text_value = (tag, value, out) => {
 export const write_creation_info = (creation_info, out) => {
   // Write the creation info to out.
   const data = `# Creation Info \n\n`;
-  fs.writeFile(out, data, (err) => {
+  fs.appendFile(out, data, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written creation info");
   });
@@ -66,7 +62,7 @@ export const write_creation_info = (creation_info, out) => {
 export const write_review = (review, out) => {
   // Write the fields of a single review to out.
   const data = `# Review \n\n`;
-  fs.writeFile(out, data, (err) => {
+  fs.appendFile(out, data, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written review");
   });
@@ -80,7 +76,7 @@ export const write_review = (review, out) => {
 export const write_annotation = (annotation, out) => {
   // Write the fields of a single annotation to out.
   const data = `# Annotation \n\n`;
-  fs.writeFile(out, data, (err) => {
+  fs.appendFile(out, data, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written annotation");
   });
@@ -94,7 +90,7 @@ export const write_annotation = (annotation, out) => {
 }
 
 export const write_file_type = (ftype, out) => {
-  const spdx_file_type = SpdxFileType();
+  const spdx_file_type = new filejs.SpdxFileType()();
   const VALUES = {
         [spdx_file_type.SOURCE]: 'SOURCE',
         [spdx_file_type.OTHER]: 'OTHER',
@@ -107,7 +103,7 @@ export const write_file_type = (ftype, out) => {
 export const write_file = (spdx_file, out) => {
   // Write a file fields to out.
   const data = `# File \n\n`;
-  fs.writeFile(out, data, (err) => {
+  fs.appendFile(out, data, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written file");
   });
@@ -117,7 +113,7 @@ export const write_file = (spdx_file, out) => {
     write_file_type(spdx_file.type, out)
   }
   write_value('FileChecksum', spdx_file.chk_sum.to_tv(), out)
-  if(spdx_file.conc_lics instanceof LicenseConjunction || spdx_file.conc_lics instanceof LicenseDisjunction) {
+  if(spdx_file.conc_lics instanceof documentjs.LicenseConjunction || spdx_file.conc_lics instanceof documentjs.LicenseDisjunction) {
     write_value('LicenseConcluded', `(${spdx_file.conc_lics})`, out)
   } else {
     write_value('LicenseConcluded', spdx_file.conc_lics, out)
@@ -127,7 +123,7 @@ export const write_file = (spdx_file, out) => {
     write_value('LicenseInfoInFile', spdx_file.licenses_in_file[i], out)
   }
 
-  if(spdx_file.copyright instanceof six.string_types) {
+  if(spdx_file.copyright instanceof String) {
     write_text_value('FileCopyrightText', spdx_file.copyright, out)
   } else {
     write_value('FileCopyrightText', spdx_file.copyright, out)
@@ -169,7 +165,7 @@ export const write_file = (spdx_file, out) => {
 export const write_package = (package_, out) => {
   // Write a package fields to out.
   const data = `# Package \n\n`;
-  fs.writeFile(out, data, (err) => {
+  fs.appendFile(out, data, (err) => {
     if (err) console.log(err);
     console.log("Successfully Written creation info");
   });
@@ -203,19 +199,19 @@ export const write_package = (package_, out) => {
     write_value('PackageChecksum', package_.check_sum.to_tv(), out)
   }
 
-  write_value('PackageVerificationCode', format_verif_code(packapackage_ge), out)
+  write_value('PackageVerificationCode', format_verif_code(package_), out)
 
   if(package_.has_optional_field('description')) {
     write_text_value('PackageDescription', package_.description, out)
   }
 
-  if(package_.license_declared instanceof LicenseConjunction || package_.license_declared instanceof LicenseDisjunction) {
+  if(package_.license_declared instanceof documentjs.LicenseConjunction || package_.license_declared instanceof documentjs.LicenseDisjunction) {
     write_value('PackageLicenseDeclared', `(${package_.license_declared})`, out)
   } else {
     write_value('PackageLicenseDeclared', package_.license_declared, out)
   }
 
-  if(package_.conc_lics instanceof LicenseConjunction || package_.conc_lics instanceof LicenseDisjunction) {
+  if(package_.conc_lics instanceof documentjs.LicenseConjunction || package_.conc_lics instanceof documentjs.LicenseDisjunction) {
     write_value('PackageLicenseConcluded', `(${package_.conc_lics})`, out)
   } else {
     write_value('PackageLicenseConcluded', package_.conc_lics, out)
@@ -230,7 +226,7 @@ export const write_package = (package_, out) => {
     write_text_value('PackageLicenseComments', package_.license_comment, out)
   }
 
-  if(package_.cr_text instanceof six.string_types) {
+  if(package_.cr_text instanceof String) {
     write_value('PackageCopyrightText', `(${package_.cr_text})`, out)
   } else {
     write_value('PackageCopyrightText', package_.cr_text, out)
@@ -257,8 +253,10 @@ export const write_extracted_licenses = (lics, out) => {
     write_text_value('LicenseComment', lics.comment, out)
   }
 
-  for(let i = 0; i < lics.cross_ref.length; i++) {
-    write_value('LicenseCrossReference', lics.cross_ref[i], out)
+  if(lics.cross_ref) {
+    for(let i = 0; i < lics.cross_ref.length; i++) {
+      write_value('LicenseCrossReference', lics.cross_ref[i], out)
+    }
   }
 
   write_text_value('ExtractedText', lics.text, out)
@@ -278,7 +276,8 @@ export const write_document = (document, out, validate) => {
 
     // Write out document information
     const data = `# Document Information \n\n`;
-    fs.writeFile(out, data, (err) => {
+    console.log(out)
+    fs.appendFile(out, data, (err) => {
       if (err) console.log(err);
       console.log("Successfully Written document information");
     });
@@ -322,7 +321,7 @@ export const write_document = (document, out, validate) => {
     write_separators(out)
 
     const data2 = `# Extracted Licenses \n\n`;
-    fs.writeFile(out, data2, (err) => {
+    fs.appendFile(out, data2, (err) => {
       if (err) console.log(err);
       console.log("Successfully Written extracted licenses");
     });
