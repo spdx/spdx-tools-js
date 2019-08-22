@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 
 import {LICENSE_LIST_VERSION} from './config';
-import {datetime_iso_format} from './utils';
 import moment from 'moment';
+let utilsjs = require('./utils');
 
 export class Creator {
   /*
@@ -142,7 +142,7 @@ export class CreationInfo extends Creator {
   }
 
   created_iso_format() {
-    return datetime_iso_format(this.created);
+    return utilsjs.datetime_iso_format(this.created);
   }
 
   has_comment() {

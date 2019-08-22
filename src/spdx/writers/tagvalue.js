@@ -52,7 +52,7 @@ export const write_creation_info = (creation_info, out) => {
     write_value('Creator', creation_info.creators[i], out)
   }
   // write created
-  write_value('Created', creation_info.created_iso_format, out)
+  write_value('Created', creation_info.created_iso_format(), out)
   // possible comment
   if(creation_info.has_comment) {
     write_text_value('CreatorComment', creation_info.comment, out)
@@ -281,8 +281,8 @@ export const write_document = (document, out, validate) => {
       if (err) console.log(err);
       console.log("Successfully Written document information");
     });
-    write_value('SPDXVersion', document.version.toString(), out)
-    write_value('DataLicense', document.data_license.identifier, out)
+    write_value('SPDXVersion', document.version.to_str(), out)
+    write_value('DataLicense', document.data_license.identifier(), out)
     write_value('DocumentName', document.name, out)
     write_value('SPDXID', 'SPDXRef-DOCUMENT', out)
     write_value('DocumentNamespace', document.namespace, out)

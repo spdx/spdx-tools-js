@@ -6,6 +6,7 @@ const Lexer = require("lex");
 
 export const datetime_iso_format = (dateTime) => {
   // Return an ISO-8601 representation of a datetime object.
+  console.log(moment(dateTime).toISOString());
   return moment(dateTime).toISOString()
 }
 
@@ -206,4 +207,5 @@ module.exports = {
   NoAssert : NoAssert,
   UnKnown : UnKnown,
   SPDXNone : SPDXNone,
+  datetime_iso_format : datetime_iso_format
 }
