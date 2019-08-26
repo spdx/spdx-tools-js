@@ -1,3 +1,4 @@
+
 # Javascript equivalent of [SPDX's python-tools](https://github.com/spdx/tools-python)
 
 
@@ -37,3 +38,17 @@ or RDF formats) and output to a spreadsheet
 - CompareSpdxDocs - Compare two SPDX documents (in either tag/value or RDF
 format)
 - GenerateVerificationCode - Geneinkrate a Verification Code from a directory of files.
+
+## Installation and Usage:
+
+* Create a virtualenv for the project
+* Activate the virtualenv
+* Clone the project in the virtualenv
+* Install node modules:
+`npm install`
+* Build the project:
+`npm run build`
+* Use
+The project is now fit for use in any of your javascript apps.
+For now, I left the command `npm run start` to create an spdx tv document
+
