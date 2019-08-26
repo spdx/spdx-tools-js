@@ -39,7 +39,7 @@ or RDF formats) and output to a spreadsheet
 format)
 - GenerateVerificationCode - Geneinkrate a Verification Code from a directory of files.
 
-## Installation and Usage:
+## Installation and Usage
 
 * Create a virtualenv for the project
 * Activate the virtualenv
