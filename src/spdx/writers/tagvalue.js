@@ -277,7 +277,7 @@ export const write_document = (document, out, validate) => {
     // Write out document information
     const data = `# Document Information \n\n`;
     console.log(out)
-    fs.appendFile(out, data, (err) => {
+    fs.writeFile(out, data, (err) => {
       if (err) console.log(err);
       console.log("Successfully Written document information");
     });
