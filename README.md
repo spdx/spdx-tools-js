@@ -1,5 +1,11 @@
 
-# Javascript equivalent of [SPDX's python-tools](https://github.com/spdx/tools-python)
+
+# :warning: This library is going to be deprecated in favor of the ["TypeScript library"](https://github.com/spdx/tools-ts) :warning:
+
+The TypeScript library is a fresh rewrite that can be used in JavaScript and TypeScript projects and has the goal to replace this project.
+
+
+## Javascript equivalent of [SPDX's python-tools](https://github.com/spdx/tools-python)
 
 
 The Software Package Data Exchange (SPDX) specification is a standard format for
